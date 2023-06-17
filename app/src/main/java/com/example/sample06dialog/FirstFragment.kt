@@ -1,11 +1,13 @@
 package com.example.sample06dialog
 
+import android.app.DatePickerDialog
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.core.text.buildSpannedString
 import androidx.core.text.color
 import androidx.fragment.app.Fragment
@@ -32,8 +34,12 @@ class FirstFragment : Fragment() {
 
         with(binding) {
 
+            val colorValue = ContextCompat.getColor(
+                requireContext(),
+                androidx.constraintlayout.widget.R.color.abc_btn_colored_text_material
+            )
             val neutralButtonText = buildSpannedString {
-                color(Color.MAGENTA) {
+                color(colorValue) {
                     append("neutral")
                 }
             }
@@ -45,9 +51,11 @@ class FirstFragment : Fragment() {
             }
 
             button.setOnClickListener {
+
                 AlertDialog.Builder(requireContext())
                     .setTitle("title")
                     .setMessage("message")
+                    .setCancelable(false)
                     .setPositiveButton(android.R.string.ok) {_, _ ->
 
                     }
